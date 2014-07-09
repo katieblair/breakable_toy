@@ -6,8 +6,18 @@
 
 <%= @draft.body.html_safe %>
 
+<h3>Critiques:</h3>
+<% @critiques.each do |critique| %>
+  <%= critique.comment %>
+<% end %>
+
+<h3>Critique This Draft:</h3>
+<%= form_for([@draft, @critique]) do |f| %>
+  <%= f.label :comment %>
+  <%= f.text_area :comment %>
+  <%= f.submit %>
+<% end %>
+
 <%= link_to 'Edit This Draft', edit_draft_path(@draft) %><br/>
 <%= link_to 'Delete This Draft', draft_path(@draft), method: :delete, data: {:confirm => 'Are you sure?'} %><br/>
 <%= link_to 'All Public Drafts', drafts_path %>
-
-

@@ -5,6 +5,8 @@ class DraftsController < ApplicationController
 
   def show
     @draft = Draft.find(params[:id])
+    @critiques = Critique.where(draft: @draft)
+    @critique = Critique.new
   end
 
   def new
