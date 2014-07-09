@@ -6,8 +6,8 @@
 
 <%= @draft.body.html_safe %>
 
-<%= link_to 'Edit This Draft', edit_draft_path(@draft) %>
-<%= link_to 'Delete This Draft', draft_path(@draft), method: :delete, data: {:confirm => 'Are you sure?'} %>
-
+<%= link_to 'Edit This Draft', edit_draft_path(@draft) %><br/>
+<%= link_to 'Delete This Draft', draft_path(@draft), method: :delete, data: {:confirm => 'Are you sure?'} %><br/>
+<%= link_to 'All Public Drafts', drafts_path %>
 
 
