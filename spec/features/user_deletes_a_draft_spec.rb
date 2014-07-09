@@ -7,6 +7,7 @@ feature 'user deletes a draft', %Q(
 ) do
 
 # Acceptance criteria
+# I must be signed in to do this.
 # The draft to be deleted must belong to me.
 # Deleting the draft should also delete all of its critiques.
 # I should get a success message if it is deleted successfully.

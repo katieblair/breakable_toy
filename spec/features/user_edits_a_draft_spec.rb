@@ -28,7 +28,7 @@ feature 'user edits a draft', %Q(
 
       fill_in 'Title', with: draft.title
       choose 'Genre', with: draft.genre #Dropdown menu
-      choose 'Make public?', with: draft.restriction #How to do this?
+      choose 'Public', with: draft.restriction #How to do this?
       fill_in 'Summary', with: draft.summary
       fill_in 'Content', with: draft.content
       click_on 'Update Draft'
@@ -47,8 +47,8 @@ feature 'user edits a draft', %Q(
       visit edit_draft_path(draft)
 
       fill_in 'Title', with: ''
-      choose 'Genre', with: #How to do this???
-      choose 'Make public?', with: #How to do this???
+      #choose 'Genre', with: #How to do this???
+      #choose 'Public', with: #How to do this???
       fill_in 'Summary', with: ''
       fill_in 'Content', with: ''
       click_on 'Update Draft'
