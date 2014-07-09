@@ -39,6 +39,7 @@ class DraftsController < ApplicationController
     @draft = Draft.find(params[:id])
     if @draft.destroy
       flash[:notice] = 'Deleted'
+      redirect_to drafts_path
     else
       flash[:notice] = 'Error'
       render :show
