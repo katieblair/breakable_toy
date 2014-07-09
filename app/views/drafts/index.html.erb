@@ -1,7 +1,7 @@
 <%= link_to "New Draft", new_draft_path %>
 <h1>All Public Drafts</h1>
 <% @drafts.each do |draft| %>
-  <h3><%= draft.title.html_safe %></h3>
+  <h3><%= link_to draft.title.html_safe, draft_path(draft) %></h3>
   <p><%= draft.restriction.html_safe %></p>
   <p><%= draft.summary.html_safe %></p>
 <% end %>
