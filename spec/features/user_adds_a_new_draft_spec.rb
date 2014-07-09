@@ -9,7 +9,7 @@ feature 'user adds a new draft', %Q(
 # Acceptance criteria:
 # I need to be signed in to do this.
 # I must provide a title.
-# I must provide content.
+# I must provide a body.
 # I must select a genre.
 # I must specify if it is public or not.
 # I can optionally provide a summary.
@@ -21,7 +21,7 @@ feature 'user adds a new draft', %Q(
 # One for public draft and one for group-only draft
 # For now do not use groups and assume all drafts are public
 
-#Limit summary length and add a test for that
+# Limit summary length and add a test for that
 
   context 'authenticated user' do
     before :each do
@@ -35,9 +35,9 @@ feature 'user adds a new draft', %Q(
 
       fill_in 'Title', with: draft.title
       choose 'Genre', with: draft.genre #Dropdown menu
-      choose 'Make public?', with: draft.restriction #How to do this?
+      select draft.restriction, from: 'Restriction'
       fill_in 'Summary', with: draft.summary
-      fill_in 'Content', with: draft.content
+      fill_in 'Body', with: draft.body
       click_on 'Create Draft'
 
       expect(page).to have_content('Success!')
@@ -46,7 +46,7 @@ feature 'user adds a new draft', %Q(
       expect(page).to have_content draft.genre
       expect(page).to have_content draft.restriction #How to do this?
       expect(page).to have_content draft.summary
-      expect(page).to have_content draft.content
+      expect(page).to have_content draft.body
     end
 
     scenario 'authenticated user does not supply required content' do
@@ -59,7 +59,7 @@ feature 'user adds a new draft', %Q(
       expect(page).to have_content("Genre can't be blank") #Is this true with a dropdown?
       expect(page).to have_content("Make public? can't be blank")
       expect(page).to have_content("Summary can't be blank")
-      expect(page).to have_content("Content can't be blank")
+      expect(page).to have_content("Body can't be blank")
     end
   end
 
@@ -69,3 +69,6 @@ feature 'user adds a new draft', %Q(
     expect(page).to have_content('You need to sign in')
   end
 end
+
+# fill_in 'Body', with: draft.body
+# fill_in '.cke_contents_ltr', with: draft.body

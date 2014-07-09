@@ -12,7 +12,7 @@ feature 'user edits a draft', %Q(
 # The title field must still be filled in.
 # The genre must still be selected.
 # The summary must still be filled in.
-# The content field must still be filled in.
+# The body field must still be filled in.
 # I should get a success message if it is edited successfully.
 # I should get an error message if it is not edited successfully.
 
@@ -30,7 +30,7 @@ feature 'user edits a draft', %Q(
       choose 'Genre', with: draft.genre #Dropdown menu
       choose 'Public', with: draft.restriction #How to do this?
       fill_in 'Summary', with: draft.summary
-      fill_in 'Content', with: draft.content
+      fill_in 'Body', with: draft.body
       click_on 'Update Draft'
 
       expect(page).to have_content('Success!')
@@ -39,7 +39,7 @@ feature 'user edits a draft', %Q(
       expect(page).to have_content draft.genre
       expect(page).to have_content draft.restriction #How to do this?
       expect(page).to have_content draft.summary
-      expect(page).to have_content draft.content
+      expect(page).to have_content draft.body
     end
 
     scenario 'authorized user see error message if form incomplete' do
@@ -50,15 +50,15 @@ feature 'user edits a draft', %Q(
       #choose 'Genre', with: #How to do this???
       #choose 'Public', with: #How to do this???
       fill_in 'Summary', with: ''
-      fill_in 'Content', with: ''
+      fill_in 'Body', with: ''
       click_on 'Update Draft'
 
       expect(page).to_not have_content('Success!')
       expect(page).to have_content("Title can't be blank")
       expect(page).to have_content("Genre can't be blank") #Is this true with a dropdown?
-      expect(page).to have_content("Make public? can't be blank")
+      expect(page).to have_content("Restriction can't be blank")
       expect(page).to have_content("Summary can't be blank")
-      expect(page).to have_content("Content can't be blank")
+      expect(page).to have_content("Body can't be blank")
     end
 
     scenario 'unauthorized user cannot edit draft' do

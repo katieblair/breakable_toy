@@ -2,9 +2,9 @@ FactoryGirl.define do
   factory :draft do
     sequence(:title) { |n| "My Short Story #{n}" }
     genre 'Fantasy'
-    #How to do this? make_public 'True'
+    restriction 'Public'
     summary 'This is a short story'
-    # content--how to do this?
+    body 'Body' #How to do this with ckeditor?  Will this work?
 
     user
   end

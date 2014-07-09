@@ -25,10 +25,10 @@ feature 'users views draft show page', %Q(
     expect(page).to have_content draft.genre
     expect(page).to have_content draft.restriction #How to do this?
     expect(page).to have_content draft.summary
-    expect(page).to have_content draft.content
+    expect(page).to have_content draft.body
 
     critiques.each do |critique|
-      expect(page).to have_content draft.comment
+      expect(page).to have_content critique.comment
     end
   end
 
