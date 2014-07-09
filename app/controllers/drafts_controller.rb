@@ -46,6 +46,8 @@ class DraftsController < ApplicationController
     end
   end
 
+  private
+
   def draft_params
     params.require(:draft).permit(:title, :restriction, :summary, :body)
   end
