@@ -27,10 +27,12 @@ class DraftsController < ApplicationController
 
   def edit
     @draft = Draft.find(params[:id])
+    authorize_to_edit
   end
 
   def update
     @draft = Draft.find(params[:id])
+    authorize_to_edit
     if @draft.update(draft_params)
       redirect_to draft_path(@draft)
       flash[:notice] = 'Success!'
@@ -41,6 +43,7 @@ class DraftsController < ApplicationController
 
   def destroy
     @draft = Draft.find(params[:id])
+    authorize_to_edit
     if @draft.destroy
       flash[:notice] = 'Deleted'
       redirect_to drafts_path
@@ -54,5 +57,11 @@ class DraftsController < ApplicationController
 
   def draft_params
     params.require(:draft).permit(:title, :restriction, :summary, :body)
+  end
+
+  def authorize_to_edit
+    if current_user != @ruby_gem.user || current_user.role != 'admin'
+      flash[:notice] = 'You are not authorized to do that.'
+    end
   end
 end
