@@ -4,7 +4,7 @@ class CritiquesController < ApplicationController
   def create
     @critique = Critique.new(critique_params)
     @critiques = Critique.order(created_at: :desc)
-    @draft = Draft.find(params[:draft])
+    @draft = Draft.find(params[:draft_id])
     @critique.draft = @draft
     if @critique.save
       flash[:notice] = 'Success!'
