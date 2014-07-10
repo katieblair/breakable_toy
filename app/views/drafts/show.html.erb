@@ -18,6 +18,11 @@
   <%= f.submit %>
 <% end %>
 
-<%= link_to 'Edit This Draft', edit_draft_path(@draft) %><br/>
-<%= link_to 'Delete This Draft', draft_path(@draft), method: :delete, data: {:confirm => 'Are you sure?'} %><br/>
+<div>
+  <% if current_user == @draft.user || current_user.role == 'admin' %>
+    <%= link_to "Edit", edit_draft_path(@draft) %>
+    <%= link_to "Delete", draft_path(@draft), method: :delete, data: {:confirm => "Are you sure?"} %>
+  <% end %>
+</div>
+
 <%= link_to 'All Public Drafts', drafts_path %>
