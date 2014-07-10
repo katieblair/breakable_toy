@@ -1,5 +1,6 @@
 class CritiquesController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_to_edit, only: [:edit, :update, :delete]
 
   def create
     @critique = Critique.new(critique_params)
@@ -35,5 +36,14 @@ class CritiquesController < ApplicationController
 
   def critique_params
     params.require(:critique).permit(:comment)
+  end
+
+  def authorize_to_edit
+    @critique = Critique.find(params[:id])
+    @draft = @critique.draft
+    if current_user != @critique.user || current_user.role = 'admin'
+      flash[:notice] = "You are not authorized to do that."
+      redirect_to draft_path(@draft)
+    end
   end
 end
