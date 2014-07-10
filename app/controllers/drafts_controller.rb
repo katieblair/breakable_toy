@@ -7,6 +7,7 @@ class DraftsController < ApplicationController
 
   def show
     @draft = Draft.find(params[:id])
+    @draft.user = current_user
     @critiques = Critique.where(draft: @draft)
     @critique = Critique.new
   end
@@ -34,8 +35,8 @@ class DraftsController < ApplicationController
     @draft = Draft.find(params[:id])
     authorize_to_edit
     if @draft.update(draft_params)
-      redirect_to draft_path(@draft)
       flash[:notice] = 'Success!'
+      redirect_to draft_path(@draft)
     else
       render :edit
     end

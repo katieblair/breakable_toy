@@ -15,4 +15,57 @@ feature 'user signs in', %Q(
 # I should get a success message if it is posted successfully.
 # I should get an error message if it is not posted successfully.
 
+  scenario 'user signs in' do
+    user = FactoryGirl.create(:user)
+    visit '/'
+    click_link 'Sign In'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
+
+    expect(page).to have_content('Sign Out')
+    expect(page).to_not have_content('Sign Up')
+    expect(page).to_not have_content('Sign In')
+  end
+
+  scenario 'user does not provide email' do
+    visit '/'
+    click_link 'Sign In'
+    fill_in 'Email', with: ''
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
+
+    expect(page).to have_content('Invalid email or password')
+  end
+
+  scenario 'user does not provide password' do
+    visit '/'
+    click_link 'Sign In'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: ''
+    click_button 'Sign In'
+
+    expect(page).to have_content('Invalid email or password')
+  end
+
+  scenario 'user provides incorrect email' do
+    visit '/'
+    click_link 'Sign In'
+    fill_in 'Email', with: 'wrong@example.com'
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
+
+    expect(page).to have_content('Invalid email or password')
+  end
+
+  scenario 'user provides incorrect password' do
+    visit '/'
+    click_link 'Sign In'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: 'wrong'
+    click_button 'Sign In'
+
+    expect(page).to have_content('Invalid email or password')
+  end
+
 end
