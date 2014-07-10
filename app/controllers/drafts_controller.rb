@@ -1,5 +1,6 @@
 class DraftsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_to_edit, only: [:edit, :update, :destroy]
 
   def index
     @drafts = Draft.order("created_at DESC")
@@ -28,12 +29,10 @@ class DraftsController < ApplicationController
 
   def edit
     @draft = Draft.find(params[:id])
-    authorize_to_edit
   end
 
   def update
     @draft = Draft.find(params[:id])
-    authorize_to_edit
     if @draft.update(draft_params)
       flash[:notice] = 'Success!'
       redirect_to draft_path(@draft)
@@ -44,7 +43,6 @@ class DraftsController < ApplicationController
 
   def destroy
     @draft = Draft.find(params[:id])
-    authorize_to_edit
     if @draft.destroy
       flash[:notice] = 'Deleted'
       redirect_to drafts_path
@@ -63,7 +61,7 @@ class DraftsController < ApplicationController
   def authorize_to_edit
     if current_user != @draft.user || current_user.role != 'admin'
       flash[:notice] = 'You are not authorized to do that.'
-      redirect_to drafts_path and return
+      redirect_to drafts_path
     end
   end
 end
