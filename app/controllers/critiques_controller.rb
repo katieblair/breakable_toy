@@ -32,6 +32,19 @@ class CritiquesController < ApplicationController
     end
   end
 
+  def destroy
+    @critique = Critique.find(params[:id])
+    @draft = @critique.draft
+    authorize_to_edit
+    if @critique.destroy
+      flash[:notice] = "Deleted"
+      redirect_to draft_path(@draft)
+    else
+      flash[:notice] = "Error"
+      redirect_to draft_path(@draft)
+    end
+  end
+
   private
 
   def critique_params
