@@ -58,7 +58,7 @@ feature 'user signs up', %Q(
 
   end
 
-  scenario 'user fails to enter required information' do
+  scenario 'user fails to enter required information' do #Add to this test?
     user = FactoryGirl.build(:user)
 
     visit '/'
