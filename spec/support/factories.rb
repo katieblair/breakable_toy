@@ -20,6 +20,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "user#{n}@example.com" }
     first_name 'Jane'
     last_name 'Smith'
+    username 'username'
     password 'password'
     role 'member'
     profile_photo { File.open(File.join(Rails.root, '/spec/support/example.jpg')) }
