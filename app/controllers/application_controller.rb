@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name, :username, :profile_photo]
   end
+
+  def authorized_to_edit?(review)
+    signed_in? && (current_user == review.user || current_user.role == 'admin')
+  end
 end
