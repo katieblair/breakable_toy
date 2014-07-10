@@ -1,4 +1,6 @@
 class CritiquesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @critique = Critique.new(critique_params)
     @critiques = Critique.order(created_at: :desc)

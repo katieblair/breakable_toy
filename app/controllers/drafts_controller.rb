@@ -1,4 +1,6 @@
 class DraftsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @drafts = Draft.order("created_at DESC")
   end
