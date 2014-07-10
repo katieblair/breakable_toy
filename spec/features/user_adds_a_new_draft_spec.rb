@@ -30,7 +30,7 @@ feature 'user adds a new draft', %Q(
       visit new_draft_path
     end
 
-    scenario 'authenticated user adds a new review' do
+    scenario 'authenticated user adds a new draft' do
       draft = FactoryGirl.create(:draft)
 
       fill_in 'Title', with: draft.title
