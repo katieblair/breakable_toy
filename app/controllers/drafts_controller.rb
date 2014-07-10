@@ -8,7 +8,6 @@ class DraftsController < ApplicationController
 
   def show
     @draft = Draft.find(params[:id])
-    @draft.user = current_user
     @critiques = Critique.where(draft: @draft)
     @critique = Critique.new
   end
@@ -19,6 +18,7 @@ class DraftsController < ApplicationController
 
   def create
     @draft = Draft.new(draft_params)
+    @draft.user = current_user
     if @draft.save
       redirect_to drafts_path
       flash[:notice] = 'Success!'
@@ -59,6 +59,7 @@ class DraftsController < ApplicationController
   end
 
   def authorize_to_edit
+    @draft = Draft.find(params[:id])
     if current_user != @draft.user || current_user.role != 'admin'
       flash[:notice] = 'You are not authorized to do that.'
       redirect_to drafts_path
