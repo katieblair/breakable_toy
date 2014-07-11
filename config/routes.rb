@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "drafts#index"
+  root to: 'drafts#index'
   resources :drafts do
     resources :critiques
   end
