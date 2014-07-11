@@ -23,6 +23,7 @@ class DraftsController < ApplicationController
       flash[:notice] = 'Success!'
       redirect_to drafts_path
     else
+      flash[:notice] = 'Error'
       render :new
     end
   end
