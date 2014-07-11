@@ -5,6 +5,6 @@ class GenresController < ApplicationController
 
   def show
     @genre = Genre.find(params[:id])
-    @drafts = Draft.where(genre_id: @genre_id)
+    @drafts = Draft.where(genre: @genre)
   end
 end

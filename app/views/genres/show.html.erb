@@ -2,7 +2,7 @@
 
 <ul>
   <% @drafts.each do |draft| %>
-    <li><%= draft.title %> <%= draft.user %> <%= draft.summary %></li>
+    <li><%= draft.title %> <%= draft.user.username %> <%= draft.summary %></li>
   <% end %>
 </ul>
 

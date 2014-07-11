@@ -54,7 +54,7 @@ class DraftsController < ApplicationController
   private
 
   def draft_params
-    params.require(:draft).permit(:title, :restriction, :summary, :body)
+    params.require(:draft).permit(:title, :genre_id, :restriction, :summary, :body)
   end
 
   def authorize_to_edit

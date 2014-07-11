@@ -5,5 +5,6 @@ class Draft < ActiveRecord::Base
   validates :body, presence: true
 
   belongs_to :user
+  belongs_to :genre
   has_many :critiques, dependent: :destroy
 end
