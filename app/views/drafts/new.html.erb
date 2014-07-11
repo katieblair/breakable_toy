@@ -22,7 +22,7 @@
     <%= f.label :restriction %>
   </div>
   <div>
-    <%= f.text_field :restriction %>
+    <%= f.select(:restriction, [['Public'], ['Private']]) %>
   </div>
   <div>
     <%= f.label :summary %>
