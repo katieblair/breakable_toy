@@ -13,6 +13,12 @@
     <%= f.text_field :title %>
   </div>
   <div>
+    <%= f.label :genre %>
+  </div>
+  <div>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+  </div>
+  <div>
     <%= f.label :restriction %>
   </div>
   <div>
