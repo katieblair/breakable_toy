@@ -18,7 +18,7 @@ class DraftsController < ApplicationController
 
   def create
     @draft = Draft.new(draft_params)
-    @draft.user = current_user
+    @draft.user_id = current_user.id
     if @draft.save
       flash[:notice] = 'Success!'
       redirect_to drafts_path

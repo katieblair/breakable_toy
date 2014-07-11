@@ -9,6 +9,11 @@
 <h3>Critiques:</h3>
 <% @critiques.each do |critique| %>
   <%= critique.comment %>
+
+  <% if current_user == critique.user || current_user.role == 'admin' %>
+    <%= button_to 'Edit', edit_critique_path(critique) %>
+    <%= button_to 'Delete', draft_critique_path(critique.draft, critique), method: :delete, data: {:confirm => "Are you sure?"} %>
+  <% end %>
 <% end %>
 
 <h3>Critique This Draft:</h3>

@@ -7,6 +7,9 @@ class CritiquesController < ApplicationController
     @critiques = Critique.order(created_at: :desc)
     @draft = Draft.find(params[:draft_id])
     @critique.draft = @draft
+    @critique.user_id = current_user.id
+
+
     if @critique.save
       flash[:notice] = 'Success!'
       redirect_to draft_path(@draft)
