@@ -20,8 +20,8 @@ class DraftsController < ApplicationController
     @draft = Draft.new(draft_params)
     @draft.user = current_user
     if @draft.save
-      redirect_to drafts_path
       flash[:notice] = 'Success!'
+      redirect_to drafts_path
     else
       render :new
     end
