@@ -18,6 +18,7 @@ feature 'user signs out', %Q(
     visit '/'
     click_on 'Sign Out'
 
+    expect(page).to have_content('Success!')
     expect(page).to have_content('Sign Up')
     expect(page).to have_content('Sign In')
     expect(page).to_not have_content('Sign Out')
