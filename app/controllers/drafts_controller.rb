@@ -61,7 +61,7 @@ class DraftsController < ApplicationController
 
   def authorize_to_edit
     @draft = Draft.find(params[:id])
-    if current_user != @draft.user || current_user.role != 'admin'
+    if current_user != @draft.user #|| current_user.role != 'admin'
       flash[:notice] = 'You are not authorized to do that.'
       redirect_to draft_path(@draft)
     end
