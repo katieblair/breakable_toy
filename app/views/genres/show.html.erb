@@ -1,10 +1,10 @@
 <h1><%= @genre.name %></h1>
 
-<% @drafts.each do |draft| %>
-  <%= draft.title %>
-  <%= draft.user %>
-  <%= draft.summary %>
-<% end %>
+<ul>
+  <% @drafts.each do |draft| %>
+    <li><%= draft.title %> <%= draft.user %> <%= draft.summary %></li>
+  <% end %>
+</ul>
 
 <div>
   <%= link_to 'All Genres', genres_path %>
