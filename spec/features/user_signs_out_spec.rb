@@ -14,6 +14,7 @@ feature 'user signs out', %Q(
 
   scenario 'user signs out' do
     user = FactoryGirl.create(:user)
+    login(@user)
 
     visit '/'
     click_on 'Sign Out'
