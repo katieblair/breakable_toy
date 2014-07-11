@@ -21,7 +21,7 @@ feature 'user signs in', %Q(
     click_link 'Sign In'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    click_button 'Sign In'
+    click_button 'Sign in'
 
     expect(page).to have_content('Sign Out')
     expect(page).to_not have_content('Sign Up')
@@ -33,7 +33,7 @@ feature 'user signs in', %Q(
     click_link 'Sign In'
     fill_in 'Email', with: ''
     fill_in 'Password', with: user.password
-    click_button 'Sign In'
+    click_button 'Sign in'
 
     expect(page).to have_content('Invalid email or password')
   end
@@ -43,7 +43,7 @@ feature 'user signs in', %Q(
     click_link 'Sign In'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: ''
-    click_button 'Sign In'
+    click_button 'Sign in'
 
     expect(page).to have_content('Invalid email or password')
   end
@@ -53,7 +53,7 @@ feature 'user signs in', %Q(
     click_link 'Sign In'
     fill_in 'Email', with: 'wrong@example.com'
     fill_in 'Password', with: user.password
-    click_button 'Sign In'
+    click_button 'Sign in'
 
     expect(page).to have_content('Invalid email or password')
   end
@@ -63,7 +63,7 @@ feature 'user signs in', %Q(
     click_link 'Sign In'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'wrong'
-    click_button 'Sign In'
+    click_button 'Sign in'
 
     expect(page).to have_content('Invalid email or password')
   end

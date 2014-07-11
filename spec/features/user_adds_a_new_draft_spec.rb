@@ -27,11 +27,11 @@ feature 'user adds a new draft', %Q(
     before :each do
       @user = FactoryGirl.create(:user)
       login(@user)
-      visit new_draft_path
     end
 
     scenario 'authenticated user adds a new draft' do
       draft = FactoryGirl.create(:draft)
+      visit new_draft_path
 
       fill_in 'Title', with: draft.title
       choose 'Genre', with: draft.genre #Dropdown menu
@@ -51,6 +51,7 @@ feature 'user adds a new draft', %Q(
 
     scenario 'authenticated user does not supply required content' do
       draft = FactoryGirl.create(:draft)
+      visit new_draft_path
 
       click_on 'Create Draft'
 
