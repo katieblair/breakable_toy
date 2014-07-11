@@ -33,7 +33,6 @@ class DraftsController < ApplicationController
   end
 
   def update
-    #@draft = Draft.find(params[:id])
     if @draft.update(draft_params)
       flash[:notice] = 'Success!'
       redirect_to draft_path(@draft)
@@ -43,7 +42,6 @@ class DraftsController < ApplicationController
   end
 
   def destroy
-    #@draft = Draft.find(params[:id])
     if @draft.destroy
       flash[:notice] = 'Deleted'
       redirect_to drafts_path
