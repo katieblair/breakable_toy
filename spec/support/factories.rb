@@ -7,6 +7,7 @@ FactoryGirl.define do
     body 'Body' #How to do this with ckeditor?  Will this work?
 
     user
+    genre
   end
 
   factory :critique do
@@ -24,5 +25,9 @@ FactoryGirl.define do
     password 'password'
     role 'member'
 #    profile_photo { File.open(File.join(Rails.root, '/spec/support/example.jpg')) }
+  end
+
+  factory :genre do
+    name 'Fantasy'
   end
 end
