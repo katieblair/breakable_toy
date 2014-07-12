@@ -44,6 +44,6 @@ feature 'user adds a new critique', %Q(
     draft = FactoryGirl.create(:draft)
     visit draft_path(draft)
 
-    expect(page).to have_content('You must be signed in')
+    expect(page).to have_content('You need to sign in or sign up before continuing.')
   end
 end
