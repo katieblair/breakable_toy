@@ -17,6 +17,8 @@ feature 'user views all public drafts of one genre', %Q(
   scenario 'authenticated user views all public drafts of one genre' do
     genre = FactoryGirl.create(:genre)
     drafts = FactoryGirl.create_list(:draft, 3, genre: genre)
+    @user = FactoryGirl.create(:user)
+    login(@user)
 
     visit genre_path(genre)
 
