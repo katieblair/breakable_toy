@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :draft do
     sequence(:title) { |n| "My Short Story #{n}" }
-    genre 'Fantasy'
     restriction 'Public'
     summary 'This is a short story'
     body 'Body' #How to do this with ckeditor?  Will this work?
