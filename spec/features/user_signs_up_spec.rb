@@ -26,14 +26,14 @@ feature 'user signs up', %Q(
   scenario 'user signs up' do
     user = FactoryGirl.build(:user)
 
-    visit '/'
-    click_link 'Sign Up'
-    fill_in 'First Name', with: user.first_name
-    fill_in 'Last Name', with: user.last_name
+    visit new_user_registration_path
+    save_and_open_page
+    fill_in 'First name', with: user.first_name
+    fill_in 'Last name', with: user.last_name
     fill_in 'Username', with: user.username
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    fill_in 'Password Confirmation', with: user.password
+    fill_in 'Password confirmation', with: user.password
     click_button 'Sign Up'
 
     expect(page).to have_content('Sign Out')
@@ -44,28 +44,25 @@ feature 'user signs up', %Q(
   scenario 'user signs up with non-matching passwords' do
     user = FactoryGirl.build(:user)
 
-    visit '/'
-    click_link 'Sign Up'
-    fill_in 'First Name', with: user.first_name
-    fill_in 'Last Name', with: user.last_name
+    visit new_user_registration_path
+    fill_in 'First name', with: user.first_name
+    fill_in 'Last name', with: user.last_name
     fill_in 'Username', with: user.username
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    fill_in 'Password Confirmation', with: 'wrong'
+    fill_in 'Password confirmation', with: 'wrong'
     click_button 'Sign Up'
 
     expect(page).to have_content("confirmation doesn't match")
-
   end
 
   scenario 'user fails to enter required information' do #Add to this test?
     user = FactoryGirl.build(:user)
 
-    visit '/'
-    click_link 'Sign Up'
+    visit new_user_registration_path
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    fill_in 'Password Confirmation', with: user.password
+    fill_in 'Password confirmation', with: user.password
     click_button 'Sign Up'
 
     expect(page).to have_content("can't be blank") #How to do this multiple times?
@@ -74,13 +71,12 @@ feature 'user signs up', %Q(
   scenario 'user signs up with profile photo' do #Does this need to be its own test?
     user = FactoryGirl.build(:user)
 
-    visit '/'
-    click_link 'Sign Up'
-    fill_in 'First Name', with: user.first_name
-    fill_in 'Last Name', with: user.last_name
+    visit new_user_registration_path
+    fill_in 'First name', with: user.first_name
+    fill_in 'Last name', with: user.last_name
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    fill_in 'Password Confirmation', with: user.password
+    fill_in 'Password confirmation', with: user.password
     attach_file 'Profile Photo', File.join(Rails.root, '/spec/support/example.jpg')
     click_button 'Sign Up'
 
