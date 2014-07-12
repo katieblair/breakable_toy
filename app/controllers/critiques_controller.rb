@@ -4,7 +4,7 @@ class CritiquesController < ApplicationController
 
   def create
     @critique = Critique.new(critique_params)
-    @critiques = Critique.order(created_at: :desc)
+    @critiques = Critique.all.order(created_at: :desc)
     @draft = Draft.find(params[:draft_id])
     @critique.draft = @draft
     @critique.user_id = current_user.id
