@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   resources :critiques, only: [:edit, :update, :destroy]
   resources :genres, only: [:index, :show]
 
-  match '/index' => 'homes#index'
-  match '/about' => 'homes#about'
-  match '/developer' => 'homes#developer'
-  match '/faqs' => 'homes#faqs'
+  get '/index' => 'homes#index'
+  get '/about' => 'homes#about'
+  get '/developer' => 'homes#developer'
+  get '/faqs' => 'homes#faqs'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
