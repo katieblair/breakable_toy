@@ -27,7 +27,6 @@ feature 'user signs up', %Q(
     user = FactoryGirl.build(:user)
 
     visit new_user_registration_path
-    save_and_open_page
     fill_in 'First name', with: user.first_name
     fill_in 'Last name', with: user.last_name
     fill_in 'Username', with: user.username
