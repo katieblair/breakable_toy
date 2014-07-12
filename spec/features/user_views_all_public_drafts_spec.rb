@@ -25,7 +25,7 @@ feature 'user views all public drafts', %Q(
     drafts.each do |draft|
       expect(page).to have_content(draft.title)
       expect(page).to have_content(draft.user.username)
-      expect(page).to have_content(draft.genre)
+      expect(page).to have_content(draft.genre.name)
       expect(page).to have_content(draft.summary)
     end
   end
