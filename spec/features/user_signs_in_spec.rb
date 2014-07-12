@@ -29,6 +29,7 @@ feature 'user signs in', %Q(
   end
 
   scenario 'user does not provide email' do
+    user = FactoryGirl.create(:user)
     visit '/'
     click_link 'Sign In'
     fill_in 'Email', with: ''
@@ -39,6 +40,7 @@ feature 'user signs in', %Q(
   end
 
   scenario 'user does not provide password' do
+    user = FactoryGirl.create(:user)
     visit '/'
     click_link 'Sign In'
     fill_in 'Email', with: user.email
@@ -49,6 +51,7 @@ feature 'user signs in', %Q(
   end
 
   scenario 'user provides incorrect email' do
+    user = FactoryGirl.create(:user)
     visit '/'
     click_link 'Sign In'
     fill_in 'Email', with: 'wrong@example.com'
@@ -59,6 +62,7 @@ feature 'user signs in', %Q(
   end
 
   scenario 'user provides incorrect password' do
+    user = FactoryGirl.create(:user)
     visit '/'
     click_link 'Sign In'
     fill_in 'Email', with: user.email
