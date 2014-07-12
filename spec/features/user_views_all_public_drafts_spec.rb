@@ -17,6 +17,8 @@ feature 'user views all public drafts', %Q(
 
   scenario 'authenticated user views all public drafts' do
     drafts = FactoryGirl.create_list(:draft, 3)
+    user = FactoryGirl.create(:user)
+    login(user)
 
     visit drafts_path
 
