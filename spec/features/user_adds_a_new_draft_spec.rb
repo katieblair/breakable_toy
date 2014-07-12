@@ -32,7 +32,6 @@ feature 'user adds a new draft', %Q(
     scenario 'authenticated user adds a new draft' do
       draft = FactoryGirl.create(:draft)
       visit new_draft_path
-      save_and_open_page
 
       fill_in 'Title', with: draft.title
       select draft.genre, from: 'Genre'
