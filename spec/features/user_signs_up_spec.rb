@@ -24,16 +24,16 @@ feature 'user signs up', %Q(
 # I should get an error message if it is not posted successfully.
 
   scenario 'user signs up' do
-    user = FactoryGirl.build(:user)
+    user = FactoryGirl.create(:user)
 
     visit new_user_registration_path
     fill_in 'First name', with: user.first_name
     fill_in 'Last name', with: user.last_name
     fill_in 'Username', with: user.username
     fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'Password confirmation', with: user.password
-    click_button 'Sign Up'
+    fill_in('Password', with: user.password, :match => :prefer_exact)
+    fill_in('Password confirmation', with: user.password, :match => :prefer_exact)
+    click_button 'Sign up'
 
     expect(page).to have_content('Sign Out')
     expect(page).to_not have_content('Sign Up')
@@ -47,12 +47,12 @@ feature 'user signs up', %Q(
     fill_in 'First name', with: user.first_name
     fill_in 'Last name', with: user.last_name
     fill_in 'Username', with: user.username
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'Password confirmation', with: 'wrong'
-    click_button 'Sign Up'
+    fill_in 'Email', with: 'testexample@example.com'
+    fill_in('Password', with: user.password, :match => :prefer_exact)
+    fill_in('Password confirmation', with: 'wrong', :match => :prefer_exact)
+    click_button 'Sign up'
 
-    expect(page).to have_content("confirmation doesn't match")
+    expect(page).to have_content("doesn't match")
   end
 
   scenario 'user fails to enter required information' do #Add to this test?
@@ -60,9 +60,9 @@ feature 'user signs up', %Q(
 
     visit new_user_registration_path
     fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'Password confirmation', with: user.password
-    click_button 'Sign Up'
+    fill_in('Password', with: user.password, :match => :prefer_exact)
+    fill_in('Password confirmation', with: user.password, :match => :prefer_exact)
+    click_button 'Sign up'
 
     expect(page).to have_content("can't be blank") #How to do this multiple times?
   end
@@ -74,10 +74,10 @@ feature 'user signs up', %Q(
     fill_in 'First name', with: user.first_name
     fill_in 'Last name', with: user.last_name
     fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'Password confirmation', with: user.password
+    fill_in('Password', with: user.password, :match => :prefer_exact)
+    fill_in('Password confirmation', with: user.password, :match => :prefer_exact)
     attach_file 'Profile Photo', File.join(Rails.root, '/spec/support/example.jpg')
-    click_button 'Sign Up'
+    click_button 'Sign up'
 
     expect(page).to have_content('Sign Out')
     expect(page).to_not have_content('Sign Up')
