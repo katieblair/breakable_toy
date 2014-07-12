@@ -26,8 +26,8 @@ class CritiquesController < ApplicationController
   def update
     @critique = Critique.find(params[:id])
     @draft = @critique.draft
-    if @critique.destroy
-      flash[:notice] = 'Deleted'
+    if @critique.update(critique_params)
+      flash[:notice] = 'Success!'
       redirect_to draft_path(@draft)
     else
       flash[:notice] = 'Error'
