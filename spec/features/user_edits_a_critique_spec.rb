@@ -23,7 +23,6 @@ feature 'user edits a critique', %Q(
       draft = FactoryGirl.create(:draft)
       critique = FactoryGirl.create(:critique, draft: draft, user: @user)
       visit edit_critique_path(critique)
-      save_and_open_page
 
       fill_in 'Comment', with: critique.comment
       click_on 'Update Critique'
