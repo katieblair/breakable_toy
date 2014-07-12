@@ -1,5 +1,9 @@
 <h1><%= @draft.title.html_safe %></h1>
 
+<%= @draft.user.username %>
+
+<%= @draft.genre.name %>
+
 <%= @draft.restriction.html_safe %><br/>
 
 <%= @draft.summary.html_safe %>

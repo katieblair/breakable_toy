@@ -24,7 +24,7 @@ feature 'users views draft show page', %Q(
 
     expect(page).to have_content draft.title
     expect(page).to have_content draft.user.username
-    expect(page).to have_content draft.genre
+    expect(page).to have_content draft.genre.name
     expect(page).to have_content draft.restriction #How to do this?
     expect(page).to have_content draft.summary
     expect(page).to have_content draft.body
