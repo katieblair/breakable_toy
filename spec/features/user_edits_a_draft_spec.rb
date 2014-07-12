@@ -27,8 +27,8 @@ feature 'user edits a draft', %Q(
       visit edit_draft_path(draft)
 
       fill_in 'Title', with: draft.title
-      choose 'Genre', with: draft.genre #Dropdown menu
-      choose 'Public', with: draft.restriction #How to do this?
+      select draft.genre, from: 'Genre'
+      select draft.restriction, from: 'Restriction'
       fill_in 'Summary', with: draft.summary
       fill_in 'Body', with: draft.body
       click_on 'Update Draft'
@@ -37,7 +37,7 @@ feature 'user edits a draft', %Q(
       expect(page).to have_content draft.title
       expect(page).to have_content draft.user.username
       expect(page).to have_content draft.genre
-      expect(page).to have_content draft.restriction #How to do this?
+      expect(page).to have_content draft.restriction
       expect(page).to have_content draft.summary
       expect(page).to have_content draft.body
     end
@@ -47,16 +47,12 @@ feature 'user edits a draft', %Q(
       visit edit_draft_path(draft)
 
       fill_in 'Title', with: ''
-      #choose 'Genre', with: #How to do this???
-      #choose 'Public', with: #How to do this???
       fill_in 'Summary', with: ''
       fill_in 'Body', with: ''
       click_on 'Update Draft'
 
       expect(page).to_not have_content('Success!')
       expect(page).to have_content("Title can't be blank")
-      expect(page).to have_content("Genre can't be blank") #Is this true with a dropdown?
-      expect(page).to have_content("Restriction can't be blank")
       expect(page).to have_content("Summary can't be blank")
       expect(page).to have_content("Body can't be blank")
     end
