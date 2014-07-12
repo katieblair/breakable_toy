@@ -17,6 +17,8 @@ feature 'users views draft show page', %Q(
   scenario 'authenticated user views public draft show page' do
     draft = FactoryGirl.create(:draft)
     critiques = FactoryGirl.create_list(:critique, 3, draft: draft)
+    @user = FactoryGirl.create(:user)
+    login(@user)
 
     visit draft_path(draft)
 
