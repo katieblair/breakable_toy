@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   has_many :critiques
 
   def is_member?(group)
-    @membership = Membership.where(user_id == current_user.id)
-    if @membership.group_id == group.id
+    @membership = Membership.where(user: self, group: group)
+    if !@membership.empty?
       true
     else
       false
