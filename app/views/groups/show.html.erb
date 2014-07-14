@@ -2,8 +2,16 @@
 
 <p><%= @group.description %></p>
 
+<!-- if current_user is not a member -->
+  <!-- link_to "Join this group", memberships_path -->
+<!-- end -->
+
+<!-- if current_user is a member but not the moderator -->
+<!-- See a list of all members -->
+
 <div>
   <% if current_user.id == @group.user_id || current_user.role == 'admin' %>
+  <!-- Show membership requests -->
     <%= link_to "Edit", edit_group_path(@group) %>
     <%= button_to "Delete", group_path(@group), method: :delete, data: {:confirm => "Are you sure?"} %>
   <% end %>
