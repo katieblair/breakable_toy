@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :groups do
     resources :memberships, only: [:create, :destroy]
   end
+  resources :users, only: [:show, :edit, :update]
+
   patch '/memberships/:id/confirm' => 'memberships#confirm'
 
   get '/index' => 'homes#index'
