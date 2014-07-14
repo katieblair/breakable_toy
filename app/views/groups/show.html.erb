@@ -8,7 +8,7 @@
 
 <% if current_user.is_member?(@group) && current_user.id != @group.user_id %>
   <h3>Moderator:</h3>
-  <p><%= @group.user.username %></p>
+  <p><%= @group.moderator.username %></p>
   <h3>Group Members:</h3>
   <ul>
     <% @memberships.each do |membership| %>
