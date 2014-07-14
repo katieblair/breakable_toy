@@ -1,5 +1,6 @@
 class MembershipsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_moderator, only: :confirm
 
   def create
     @membership = Membership.new(membership_params)
@@ -26,9 +27,21 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def confirm
+
+  end
+
   private
 
   def membership_params
     params.require(:membership).permit(:user_id, :group_id)
+  end
+
+  def authorize_moderator
+    @group = Group.find(params[:id])
+    if current_user.id != @group.user_id
+      flash[:notice] = 'You are not authorized to do that.'
+      redirect_to group_path(@group)
+    end
   end
 end
