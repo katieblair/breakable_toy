@@ -9,4 +9,12 @@ class User < ActiveRecord::Base
 
   has_many :drafts
   has_many :critiques
+
+  def is_member?(group)
+    if
+      true
+    else
+      false
+    end
+  end
 end
