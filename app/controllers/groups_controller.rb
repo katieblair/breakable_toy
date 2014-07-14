@@ -57,7 +57,7 @@ class GroupsController < ApplicationController
 
   def authorize_moderator
     @group = Group.find(params[:id])
-    if current_user != @group.user
+    if current_user.id != @group.user_id
       flash[:notice] = 'You are not authorized to do that.'
       redirect_to group_path(@group)
     end
