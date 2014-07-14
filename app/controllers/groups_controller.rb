@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_moderator, only: [:edit, :update, :destroy]
 
   def index
     @groups = Group.all
@@ -51,5 +52,13 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name, :description)
+  end
+
+  def authorize_moderator
+    @group = Group.find(params[:id])
+    if current_user != @group.user
+      flash[:notice] = 'You are not authorized to do that.'
+      redirect_to group_path(@group)
+    end
   end
 end
