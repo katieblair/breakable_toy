@@ -3,7 +3,8 @@
 <p><%= @group.description %></p>
 
 <!-- if current_user is not a member -->
-<%= button_to "Join this group", memberships_path, method: :create %>
+
+  <%= button_to "Join this group", group_memberships_path(@group), method: :post %>
 <!-- end -->
 
 <!-- if current_user is a member but not the moderator -->

@@ -3,10 +3,8 @@ class MembershipsController < ApplicationController
   before_action :authorize_moderator, only: :confirm
 
   def create
-    @membership = Membership.new(membership_params)
-    @group = Group.find(params[:id])
-    @membership.user_id = current_user.id
-    @membership.group_id = @group.id
+    @group =Group.find(params[:group_id])
+    @membership = Membership.new(user: current_user, group: @group)
     if @membership.save
       flash[:notice] = "Membership request saved."
       redirect_to group_path(@group)
