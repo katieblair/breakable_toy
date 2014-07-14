@@ -2,22 +2,29 @@
 
 <p><%= @group.description %></p>
 
-<!-- if current_user is not a member -->
-
+<% if !current_user.is_member?(@group) && current_user.id != @group.user_id %>
   <%= button_to "Join this group", group_memberships_path(@group), method: :post %>
-<!-- end -->
+<% end %>
 
-<!-- if current_user is a member but not the moderator -->
-<!-- See the moderator's username -->
-<!-- See a list of all members -->
-<% @memberships.each do |membership| %>
-  <%= membership.user.username %>
+<% if current_user.is_member?(@group) && current_user.id != @group.user_id %>
+  <h3>Moderator:</h3>
+  <p><%= @group.user.username %></p>
+  <h3>Group Members:</h3>
+  <ul>
+    <% @memberships.each do |membership| %>
+      <%= membership.user.username %>
+    <% end %>
+  </ul>
 <% end %>
 
 <div>
   <% if current_user.id == @group.user_id || current_user.role == 'admin' %>
-  <!-- Show list of members with option to remove each one -->
-  <!-- Show membership requests with option to approve or deny -->
+    <h3>Group Members:</h3>
+    <ul>
+      <% @memberships.each do |membership| %>
+        <%= membership.user.username %>
+        <%= button_to "Delete Member", group_memberships_path(@group), method: :delete, data: {:confirm => "Are you sure?"} %>
+      <% end %>
     <%= link_to "Edit", edit_group_path(@group) %>
     <%= button_to "Delete", group_path(@group), method: :delete, data: {:confirm => "Are you sure?"} %>
   <% end %>
