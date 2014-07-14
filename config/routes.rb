@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :genres, only: [:index, :show]
   resources :groups
   resources :memberships, only: [:create, :destroy]
+  patch '/memberships/:id/confirm' => 'memberships#confirm'
 
   get '/index' => 'homes#index'
   get '/about' => 'homes#about'
