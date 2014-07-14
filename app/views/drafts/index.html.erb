@@ -1,4 +1,3 @@
-<%= link_to "New Draft", new_draft_path %>
 <h1>All Public Drafts</h1>
 <% @drafts.each do |draft| %>
   <h3><%= link_to draft.title.html_safe, draft_path(draft) %></h3>
@@ -10,3 +9,8 @@
 
 <div>
   <%= link_to 'Drafts By Genre', genres_path %>
+</div>
+
+<div>
+  <%= link_to "New Draft", new_draft_path %>
+</div>
