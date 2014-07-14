@@ -7,10 +7,10 @@ class MembershipsController < ApplicationController
     @membership.user_id = current_user.id
     @group = Group.find(params[:id])
     if @membership.save
-      flash[:notice] = "Membership saved."
+      flash[:notice] = "Membership request saved."
       redirect_to group_path(@group)
     else
-      flash[:notice] = "Membership not saved."
+      flash[:notice] = "Membership request not saved."
       render 'groups/show'
     end
   end
@@ -28,6 +28,8 @@ class MembershipsController < ApplicationController
   end
 
   def confirm
+    @group = Group.find(params[:id])
+    @memberships = Membership.where(group: @group)
 
   end
 
