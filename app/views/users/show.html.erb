@@ -1,1 +1,40 @@
-<h1>Welcome, <%= @user.username %>!</h1>
+<% if @user.id == current_user.id %>
+  <h1>Welcome, <%= @user.username %>!</h1>
+  <h3>Bio:</h3>
+  <p><%= @user.bio %></p>
+  <h3>Your Groups:</h3>
+  <ul>
+    <% @memberships.each do |membership| %>
+      <%= membership.group.name %><br/>
+    <% end %>
+  </ul>
+  <h3>Your Drafts:</h3>
+  <ul>
+    <% @drafts.each do |draft| %>
+      <%= draft.title %>
+      <%= draft.genre %>
+      <%= draft.restriction %>
+      <%= draft.summary %>
+    <% end %>
+  </ul>
+  <%= link_to 'Edit Profile', edit_user_path(@user) %>
+<% else %>
+  <h1><%= @user.username %></h1>
+  <h3>Bio:</h3>
+  <p><%= @user.bio %></p>
+  <h3>Groups:</h3>
+  <ul>
+    <% @memberships.each do |membership| %>
+      <%= membership.group.name %>
+    <% end %>
+  </ul>
+  <h3>Drafts:</h3>
+  <ul>
+    <% @drafts.each do |draft| %>
+      <%= draft.title %>
+      <%= draft.genre %>
+      <%= draft.restriction %>
+      <%= draft.summary %>
+    <% end %>
+  </ul>
+<% end %>
