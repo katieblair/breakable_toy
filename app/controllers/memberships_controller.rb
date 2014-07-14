@@ -4,8 +4,9 @@ class MembershipsController < ApplicationController
 
   def create
     @membership = Membership.new(membership_params)
-    @membership.user_id = current_user.id
     @group = Group.find(params[:id])
+    @membership.user_id = current_user.id
+    @membership.group_id = @group.id
     if @membership.save
       flash[:notice] = "Membership request saved."
       redirect_to group_path(@group)

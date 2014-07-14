@@ -3,12 +3,15 @@
 <p><%= @group.description %></p>
 
 <!-- if current_user is not a member -->
-  <!-- link_to "Join this group", membership_request_path -->
+<%= button_to "Join this group", memberships_path, method: :create %>
 <!-- end -->
 
 <!-- if current_user is a member but not the moderator -->
 <!-- See the moderator's username -->
 <!-- See a list of all members -->
+<% @memberships.each do |membership| %>
+  <%= membership.user.username %>
+<% end %>
 
 <div>
   <% if current_user.id == @group.user_id || current_user.role == 'admin' %>
