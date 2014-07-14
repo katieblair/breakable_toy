@@ -11,10 +11,10 @@
   <h3>Your Drafts:</h3>
   <ul>
     <% @drafts.each do |draft| %>
-      <%= draft.title %>
-      <%= draft.genre %>
-      <%= draft.restriction %>
-      <%= draft.summary %>
+      <%= draft.title %><br/>
+      <%= draft.genre.name %><br/>
+      <%= draft.restriction %><br/>
+      <%= draft.summary %><br/>
     <% end %>
   </ul>
   <%= link_to 'Edit Profile', edit_user_path(@user) %>
@@ -25,16 +25,16 @@
   <h3>Groups:</h3>
   <ul>
     <% @memberships.each do |membership| %>
-      <%= membership.group.name %>
+      <%= membership.group.name %><br/>
     <% end %>
   </ul>
   <h3>Drafts:</h3>
   <ul>
     <% @drafts.each do |draft| %>
-      <%= draft.title %>
-      <%= draft.genre %>
-      <%= draft.restriction %>
-      <%= draft.summary %>
+      <%= draft.title %><br/>
+      <%= draft.genre.name %><br/>
+      <%= draft.restriction %><br/>
+      <%= draft.summary %><br/>
     <% end %>
   </ul>
 <% end %>
