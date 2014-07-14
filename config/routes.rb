@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   resources :critiques, only: [:edit, :update, :destroy]
   resources :genres, only: [:index, :show]
+  resources :groups
 
   get '/index' => 'homes#index'
   get '/about' => 'homes#about'
