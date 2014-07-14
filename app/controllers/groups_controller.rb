@@ -16,6 +16,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @group.user_id = current_user.id
     if @group.save
       flash[:notice] = 'Success!'
       redirect_to groups_path
