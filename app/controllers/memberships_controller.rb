@@ -16,8 +16,8 @@ class MembershipsController < ApplicationController
 
   def destroy
     @membership = Membership.find(params[:id])
-    @group = Group.find(params[:id])
-    if @member.destroy
+    @group = @membership.group
+    if @membership.destroy
       flash[:notice] = "Membership deleted."
       redirect_to group_path(@group)
     else
@@ -29,7 +29,6 @@ class MembershipsController < ApplicationController
   def confirm
     @group = Group.find(params[:id])
     @memberships = Membership.where(group: @group)
-
   end
 
   private

@@ -23,7 +23,7 @@
     <ul>
       <% @memberships.each do |membership| %>
         <%= membership.user.username %>
-        <%= button_to "Delete Member", group_memberships_path(@group), method: :delete, data: {:confirm => "Are you sure?"} %>
+        <%= button_to "Delete Member", group_membership_path(membership.group, membership), method: :delete, data: {:confirm => "Are you sure?"} %>
       <% end %>
     <%= link_to "Edit This Group", edit_group_path(@group) %>
     <%= button_to "Delete This Group", group_path(@group), method: :delete, data: {:confirm => "Are you sure?"} %>
