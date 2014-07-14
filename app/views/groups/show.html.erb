@@ -7,11 +7,13 @@
 <!-- end -->
 
 <!-- if current_user is a member but not the moderator -->
+<!-- See the moderator's username -->
 <!-- See a list of all members -->
 
 <div>
   <% if current_user.id == @group.user_id || current_user.role == 'admin' %>
-  <!-- Show membership requests -->
+  <!-- Show list of members with option to remove each one -->
+  <!-- Show membership requests with option to approve or deny -->
     <%= link_to "Edit", edit_group_path(@group) %>
     <%= button_to "Delete", group_path(@group), method: :delete, data: {:confirm => "Are you sure?"} %>
   <% end %>
