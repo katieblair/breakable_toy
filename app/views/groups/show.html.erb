@@ -2,4 +2,11 @@
 
 <p><%= @group.description %></p>
 
+<div>
+  <% if current_user == @group.user || current_user.role == 'admin' %>
+    <%= link_to "Edit", edit_draft_path(@draft) %>
+    <%= button_to "Delete", draft_path(@draft), method: :delete, data: {:confirm => "Are you sure?"} %>
+  <% end %>
+</div>
+
 <%= link_to 'All Groups', groups_path %>
