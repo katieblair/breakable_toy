@@ -13,7 +13,7 @@
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+  	<title><%= content_for?(:title) ? yield(:title) : "Workshopper" %></title>
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
@@ -21,10 +21,36 @@
   </head>
 
   <body>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <% if user_signed_in? %>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to 'Sign Up', new_user_registration_path %>
+            <%= link_to 'Sign In', new_user_session_path %>
+          <% end %>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li class="divider"></li>
+          <li><%= link_to "Home", index_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to "About This Site", about_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to "FAQs", faqs_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to "About the Developer", developer_path %></li>
+        </ul>
+      </div>
+    </nav>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
     <%= yield %>
 
-    
     <%= javascript_include_tag "application" %>
   </body>
 </html>
