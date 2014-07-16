@@ -1,20 +1,25 @@
-<h1>All Public Drafts</h1>
-<% @drafts.each do |draft| %>
-  <h3><%= link_to draft.title.html_safe, draft_path(draft) %></h3>
-  <p><%= draft.user.username %></p>
-  <p><%= draft.genre.name %></p>
-  <p><%= draft.restriction.html_safe %></p>
-  <p><%= draft.summary.html_safe %></p>
-<% end %>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>All Public Drafts</h1>
+    <% @drafts.each do |draft| %>
+      <h3><%= link_to draft.title.html_safe, draft_path(draft) %></h3>
+      <p><%= draft.user.username %></p>
+      <p><%= draft.genre.name %></p>
+      <p><%= draft.restriction.html_safe %></p>
+      <p><%= draft.summary.html_safe %></p>
+    <% end %>
 
-<div>
-  <%= link_to 'Drafts By Genre', genres_path %>
-</div>
+    <div>
+      <%= link_to 'Drafts By Genre', genres_path %>
+    </div>
 
-<div>
-  <%= link_to 'New Draft', new_draft_path %>
-</div>
+    <div>
+      <%= link_to 'New Draft', new_draft_path %>
+    </div>
 
-<div>
-  <%= link_to 'View Writing Groups', groups_path %>
+    <div>
+      <%= link_to 'View Writing Groups', groups_path %>
+    </div>
+    <%= yield %>
+  </div>
 </div>
