@@ -7,7 +7,7 @@
       <h3>Your Groups:</h3>
       <ul>
         <% @memberships.each do |membership| %>
-          <%= membership.group.name %><br/>
+          <%= link_to membership.group.name, group_path(membership.group) %><br/>
         <% end %>
       </ul>
       <h3>Your Drafts:</h3>
@@ -27,13 +27,13 @@
       <h3>Groups:</h3>
       <ul>
         <% @memberships.each do |membership| %>
-          <%= membership.group.name %><br/>
+          <%= link_to membership.group.name, group_path(membership.group) %><br/>
         <% end %>
       </ul>
       <h3>Drafts:</h3>
       <ul>
         <% @drafts.each do |draft| %>
-          <%= draft.title %><br/>
+          <%= link_to draft.title, draft_path(draft) %><br/>
           <%= draft.genre.name %><br/>
           <%= draft.restriction %><br/>
           <%= draft.summary %><br/>
