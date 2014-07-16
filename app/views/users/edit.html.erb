@@ -1,11 +1,16 @@
-<%= form_for @user do |f| %>
-  <div>
-    <%= f.label :bio %>
+<div class="row">
+  <div class="small-12 columns">
+    <%= form_for @user do |f| %>
+      <div>
+        <%= f.label :bio %>
+      </div>
+      <div>
+        <%= f.text_area :bio %>
+      </div>
+      <div>
+        <%= f.submit %>
+      </div>
+    <% end %>
+    <%= yield %>
   </div>
-  <div>
-    <%= f.text_area :bio %>
-  </div>
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
