@@ -4,6 +4,9 @@
       <h1>Welcome, <%= @user.username %>!</h1>
       <h3>Bio:</h3>
       <p><%= @user.bio %></p>
+      <%= link_to 'Edit Bio', edit_user_path(@user) %>
+      <br/>
+      <br/>
       <h3>Your Groups:</h3>
       <ul>
         <% @memberships.each do |membership| %>
@@ -19,7 +22,6 @@
           Summary: <%= draft.summary %><br/>
         <% end %>
       </ul>
-      <%= link_to 'Edit Bio', edit_user_path(@user) %>
     <% else %>
       <h1><%= @user.username %></h1>
       <h3>Bio:</h3>
