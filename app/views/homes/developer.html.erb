@@ -1,7 +1,11 @@
-<h1>About the Developer</h1>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>About the Developer</h1>
+    <p>Note: put in a picture here!</p>
+    <p>Hi!  My name is Katie Blair.  I built this site as my "breakable toy" while attending Launch Academy in Boston.  I am an avid writer (of young adult fantasy novels) and wanted to create a site I could use with my own writing groups.  I hope you enjoy it!</p>
 
-<p>Note: put in a picture here!</p>
+    <%= link_to 'Back to the home page', index_path %>
 
-<p>Hi!  My name is Katie Blair.  I built this site as my "breakable toy" while attending Launch Academy in Boston.  I am an avid writer (of young adult fantasy novels) and wanted to create a site I could use with my own writing groups.  I hope you enjoy it!</p>
-
-<%= link_to 'Back to the home page', index_path %>
+    <%= yield %>
+  </div>
+</div>
