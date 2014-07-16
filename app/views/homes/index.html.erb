@@ -1,13 +1,25 @@
-<h1>Welcome to Workshopper!</h1>
-
 <div class="row">
-  <div class="small-8 columns"><%= yield %></div>
+  <div class="small-8 columns">
+    <h1>Welcome to Workshopper!</h1>
+    <img src="http://www.freeimages.com/assets/182915/1829147588/green-fountain-pen-and-ink-bottle-750795-m.jpg" alt="fountain_pen" width="240" height="200">
+    <img src="http://www.freeimages.com/assets/12/110123/typewriter-507097-m.jpg" alt="typewriter" width="300" height="200">
+    <img src="http://www.freeimages.com/assets/3/26620/laptop-computers-1446068-m.jpg" alt="computer_keyboard" width="540" height="200">
+    <br/><br/>
+    <%= link_to 'About This Site', about_path, class: "button radius" %>
+    <%= link_to 'FAQs', faqs_path, class: "button radius" %>
+    <%= link_to 'About the Developer', developer_path, class: "button radius" %>
+
+    <%= yield %>
+  </div>
   <div class="small-4 columns">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
     <h2 class="subheader">Writing is hard.  Sharing is easy.</h2>
     <p>Share your work and receive feedback from other writers.</p>
   </div>
 </div>
 
-<%= link_to 'About This Site', about_path, class: "button radius" %>
-<%= link_to 'FAQs', faqs_path, class: "button radius" %>
-<%= link_to 'About the Developer', developer_path, class: "button radius" %>
