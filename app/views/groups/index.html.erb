@@ -1,10 +1,16 @@
-<h1>All Groups</h1>
-<ul>
-  <% @groups.each do |group| %>
-    <%= link_to group.name, group_path(group) %><br/>
-    <%= group.description %><br/>
-  <% end %>
-</ul>
-
-<%= link_to 'Create a Group', new_group_path %><br/>
-<%= link_to 'See All Public Drafts', drafts_path %>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>All Groups</h1>
+    <ul>
+      <% @groups.each do |group| %>
+        <%= link_to group.name, group_path(group) %><br/>
+        <%= group.description %><br/>
+        <br/>
+      <% end %>
+    </ul>
+    <%= link_to 'Create a Group', new_group_path %><br/>
+    <br/>
+    <%= link_to 'See All Public Drafts', drafts_path %>
+    <%= yield %>
+  </div>
+</div>
