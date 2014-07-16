@@ -13,10 +13,10 @@
       <h3>Your Drafts:</h3>
       <ul>
         <% @drafts.each do |draft| %>
-          <%= draft.title %><br/>
-          <%= draft.genre.name %><br/>
-          <%= draft.restriction %><br/>
-          <%= draft.summary %><br/>
+          <%= link_to draft.title, draft_path(draft) %><br/>
+          Genre: <%= draft.genre.name %><br/>
+          Restriction: <%= draft.restriction %><br/>
+          Summary: <%= draft.summary %><br/>
         <% end %>
       </ul>
       <%= link_to 'Edit Bio', edit_user_path(@user) %>
@@ -41,6 +41,8 @@
       </ul>
     <% end %>
     <br/>
+    <br/>
+    <%= link_to 'Add A New Draft', new_draft_path %><br/>
     <br/>
     <%= link_to 'All Groups', groups_path %><br/>
     <%= link_to 'All Public Drafts', drafts_path %>
