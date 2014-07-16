@@ -1,13 +1,12 @@
-<h1>All Genres</h1>
-
-<div>
-  <ul>
-    <% @genres.each do |genre| %>
-      <li><%= link_to genre.name, genre_path(genre) %></li>
-    <% end %>
-  </ul>
-</div>
-
-<div>
-  <%= link_to 'All Public Drafts', drafts_path %>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>All Genres</h1>
+    <ul>
+      <% @genres.each do |genre| %>
+        <li><%= link_to genre.name, genre_path(genre) %></li>
+      <% end %>
+    </ul>
+    <%= link_to 'All Public Drafts', drafts_path %>
+    <%= yield %>
+  </div>
 </div>
