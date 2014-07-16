@@ -1,7 +1,8 @@
+<h1>Add a Draft:</h1>
 <% if @draft.errors.any? %>
   <ul>
     <%= @draft.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
     <% end %>
   </ul>
 <% end %>
@@ -10,7 +11,7 @@
     <%= f.label :title %>
   </div>
   <div>
-    <%= f.text_field :title %>
+  <%= f.text_field :title %>
   </div>
   <div>
     <%= f.label :genre %>
