@@ -1,26 +1,31 @@
-<% if @group.errors.any? %>
-  <ul>
-    <%= @group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Add A Group</h1>
+    <% if @group.errors.any? %>
+      <ul>
+        <%= @group.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
-<%= form_for @group do |f| %>
-  <div>
-    <%= f.label :name %>
+    <%= form_for @group do |f| %>
+      <div>
+        <%= f.label :name %>
+      </div>
+      <div>
+        <%= f.text_field :name %>
+      </div>
+      <div>
+        <%= f.label :description %>
+      </div>
+      <div>
+        <%= f.text_area :description %>
+      </div>
+      <div>
+        <%= f.submit %>
+      </div>
+    <% end %>
+    <%= link_to 'Back to Groups', groups_path %>
+    <%= yield %>
   </div>
-  <div>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :description %>
-  </div>
-  <div>
-    <%= f.text_area :description %>
-  </div>
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
-
-<%= link_to 'Back to Groups', groups_path %>
+</div>

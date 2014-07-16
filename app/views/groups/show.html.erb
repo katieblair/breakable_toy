@@ -1,33 +1,34 @@
-<h1><%= @group.name %></h1>
-
-<p><%= @group.description %></p>
-
-<% if !current_user.is_member?(@group) && current_user.id != @group.user_id %>
-  <%= button_to "Join this group", group_memberships_path(@group), method: :post %>
-<% end %>
-
-<% if current_user.is_member?(@group) && current_user.id != @group.user_id %>
-  <h3>Moderator:</h3>
-  <p><%= @group.moderator.username %></p>
-  <h3>Group Members:</h3>
-  <ul>
-    <% @memberships.each do |membership| %>
-      <%= membership.user.username %>
+<div class="row">
+  <div class="small-12 columns">
+    <h1><%= @group.name %></h1>
+    <p><%= @group.description %></p>
+    <% if !current_user.is_member?(@group) && current_user.id != @group.user_id %>
+      <%= button_to "Join this group", group_memberships_path(@group), method: :post %>
     <% end %>
-  </ul>
-<% end %>
 
-<div>
-  <% if current_user.id == @group.user_id || current_user.role == 'admin' %>
-    <h3>Group Members:</h3>
-    <ul>
-      <% @memberships.each do |membership| %>
-        <%= membership.user.username %>
-        <%= button_to "Delete Member", group_membership_path(membership.group, membership), method: :delete, data: {:confirm => "Are you sure?"} %>
-      <% end %>
-    <%= link_to "Edit This Group", edit_group_path(@group) %>
-    <%= button_to "Delete This Group", group_path(@group), method: :delete, data: {:confirm => "Are you sure?"} %>
-  <% end %>
+    <% if current_user.is_member?(@group) && current_user.id != @group.user_id %>
+      <h3>Moderator:</h3>
+      <p><%= @group.moderator.username %></p>
+      <h3>Group Members:</h3>
+      <ul>
+        <% @memberships.each do |membership| %>
+          <%= membership.user.username %>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% if current_user.id == @group.user_id || current_user.role == 'admin' %>
+      <h3>Group Members:</h3>
+      <ul>
+        <% @memberships.each do |membership| %>
+          <%= membership.user.username %>
+          <%= button_to "Delete Member", group_membership_path(membership.group, membership), method: :delete, data: {:confirm => "Are you sure?"} %>
+        <% end %>
+        <%= link_to "Edit This Group", edit_group_path(@group) %>
+        <%= button_to "Delete This Group", group_path(@group), method: :delete, data: {:confirm => "Are you sure?"} %>
+    <% end %>
+    <br/>
+    <%= link_to 'All Groups', groups_path %>
+    <%= yield %>
+  </div>
 </div>
-
-<%= link_to 'All Groups', groups_path %>
