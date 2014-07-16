@@ -1,5 +1,10 @@
-<h1>Edit This Critique</h1>
-<%= simple_form_for([@draft, @critique]) do |f| %>
-  <%= f.input :comment %>
-  <%= f.button :submit %>
-<% end %>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Edit This Critique</h1>
+    <%= simple_form_for([@draft, @critique]) do |f| %>
+      <%= f.input :comment %>
+      <%= f.button :submit %>
+    <% end %>
+    <%= yield %>
+  </div>
+</div>
