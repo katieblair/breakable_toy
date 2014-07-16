@@ -1,37 +1,39 @@
-<h1><%= @draft.title.html_safe %></h1>
+<div class="row">
+  <div class="small-12 columns">
+    <h1><%= @draft.title.html_safe %></h1>
+    <p>Author: <%= link_to @draft.user.username, user_path(@draft.user) %></p>
+    <p>Genre: <%= link_to @draft.genre.name, genre_path(@draft.genre) %></p>
+    <p>Restriction: <%= @draft.restriction.html_safe %></p>
+    <p>Summary: <%= @draft.summary.html_safe %></p>
+    <br/>
+    <br/>
+    <%= @draft.body.html_safe %>
 
-<%= @draft.user.username %>
+    <h3>Critiques:</h3>
+    <% @critiques.each do |critique| %>
+      <%= critique.comment %>
+      <% if current_user == critique.user || current_user.role == 'admin' %>
+        <%= link_to 'Edit', edit_critique_path(critique) %>
+        <%= button_to 'Delete', draft_critique_path(critique.draft, critique), method: :delete, data: {:confirm => "Are you sure?"} %>
+      <% end %>
+    <% end %>
 
-<%= @draft.genre.name %>
+    <h3>Critique This Draft:</h3>
+    <%= form_for([@draft, @critique]) do |f| %>
+      <%= f.label :comment %>
+      <%= f.text_area :comment %>
+      <%= f.submit %>
+    <% end %>
 
-<%= @draft.restriction.html_safe %><br/>
+    <div>
+      <% if current_user == @draft.user || current_user.role == 'admin' %>
+        <%= link_to "Edit", edit_draft_path(@draft) %>
+        <%= button_to "Delete", draft_path(@draft), method: :delete, data: {:confirm => "Are you sure?"} %>
+      <% end %>
+    </div>
 
-<%= @draft.summary.html_safe %>
+    <%= link_to 'All Public Drafts', drafts_path %>
 
-<%= @draft.body.html_safe %>
-
-<h3>Critiques:</h3>
-<% @critiques.each do |critique| %>
-  <%= critique.comment %>
-
-  <% if current_user == critique.user || current_user.role == 'admin' %>
-    <%= link_to 'Edit', edit_critique_path(critique) %>
-    <%= button_to 'Delete', draft_critique_path(critique.draft, critique), method: :delete, data: {:confirm => "Are you sure?"} %>
-  <% end %>
-<% end %>
-
-<h3>Critique This Draft:</h3>
-<%= form_for([@draft, @critique]) do |f| %>
-  <%= f.label :comment %>
-  <%= f.text_area :comment %>
-  <%= f.submit %>
-<% end %>
-
-<div>
-  <% if current_user == @draft.user || current_user.role == 'admin' %>
-    <%= link_to "Edit", edit_draft_path(@draft) %>
-    <%= button_to "Delete", draft_path(@draft), method: :delete, data: {:confirm => "Are you sure?"} %>
-  <% end %>
+    <%= yield %>
+  </div>
 </div>
-
-<%= link_to 'All Public Drafts', drafts_path %>
