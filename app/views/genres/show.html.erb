@@ -1,11 +1,11 @@
 <div class="row">
   <div class="small-12 columns">
     <h1><%= @genre.name %></h1>
-    <ul>
       <% @drafts.each do |draft| %>
-        <li><%= link_to draft.title, draft_path(draft) %> <br/> Author: <%= link_to draft.user.username, user_path(draft.user) %> <br/> Summary: <%= draft.summary %></li>
+        <h3><%= link_to draft.title, draft_path(draft) %></h3>
+        <p>Author: <%= link_to draft.user.username, user_path(draft.user) %></p>
+        <p>Summary: <%= draft.summary %></p>
       <% end %>
-    </ul>
     <%= link_to 'All Genres', genres_path %>
     <%= yield %>
   </div>
