@@ -1,43 +1,48 @@
-<h1>Add a Draft:</h1>
-<% if @draft.errors.any? %>
-  <ul>
-    <%= @draft.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Add a Draft:</h1>
+    <% if @draft.errors.any? %>
+      <ul>
+        <%= @draft.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
-<%= form_for @draft do |f| %>
-  <div>
-    <%= f.label :title %>
+    <%= form_for @draft do |f| %>
+      <div>
+        <%= f.label :title %>
+      </div>
+      <div>
+        <%= f.text_field :title %>
+      </div>
+      <div>
+        <%= f.label :genre %>
+      </div>
+      <div>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+      </div>
+      <div>
+        <%= f.label :restriction %>
+      </div>
+      <div>
+        <%= f.select(:restriction, [['Public'], ['Private']]) %>
+      </div>
+      <div>
+        <%= f.label :summary %>
+      </div>
+      <div>
+        <%= f.text_area :summary %>
+      </div>
+      <div>
+        <%= f.label :body %>
+      </div>
+      <div>
+        <%= f.cktext_area :body, rows: 10 %>
+      </div>
+      <div>
+        <%= f.submit %>
+      </div>
+    <% end %>
+    <%= yield %>
   </div>
-  <div>
-  <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :genre %>
-  </div>
-  <div>
-    <%= f.collection_select :genre_id, Genre.all, :id, :name %>
-  </div>
-  <div>
-    <%= f.label :restriction %>
-  </div>
-  <div>
-    <%= f.select(:restriction, [['Public'], ['Private']]) %>
-  </div>
-  <div>
-    <%= f.label :summary %>
-  </div>
-  <div>
-    <%= f.text_area :summary %>
-  </div>
-  <div>
-    <%= f.label :body %>
-  </div>
-  <div>
-    <%= f.cktext_area :body, rows: 10 %>
-  </div>
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
