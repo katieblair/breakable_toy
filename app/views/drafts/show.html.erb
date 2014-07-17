@@ -12,7 +12,7 @@
     <h3>Critiques:</h3>
     <% @critiques.each do |critique| %>
       <%= critique.comment %><br/>
-      <%= critique.user.username %><br/>
+      <%= link_to critique.user.username, user_path(critique.user) %><br/>
       <% if current_user == critique.user || current_user.role == 'admin' %>
         <%= link_to 'Edit Critique', edit_critique_path(critique) %>
         <%= button_to 'Delete Critique', draft_critique_path(critique.draft, critique), method: :delete, data: {:confirm => "Are you sure?"} %>
