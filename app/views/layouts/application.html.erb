@@ -52,5 +52,13 @@
     <%= yield %>
 
     <%= javascript_include_tag "application" %>
+
+    <script>
+      $(document).ready(function() {
+        //<![CDATA[
+            if (typeof CKEDITOR != 'undefined') { CKEDITOR.replace('draft_body'); }
+        //]]>
+      });
+    </script>
   </body>
 </html>
