@@ -3,7 +3,7 @@
     <h1>All Public Drafts</h1>
     <% @drafts.each do |draft| %>
       <h3><%= link_to draft.title.html_safe, draft_path(draft) %></h3>
-      <p>Author: <%= draft.user.username %></p>
+      <p>Author: <%= link_to draft.user.username, user_path(draft.user) %></p>
       <p>Genre: <%= draft.genre.name %></p>
       <p>Restriction: <%= draft.restriction.html_safe %></p>
       <p>Summary: <%= draft.summary.html_safe %></p>
