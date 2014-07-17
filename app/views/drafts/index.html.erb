@@ -4,7 +4,7 @@
     <% @drafts.each do |draft| %>
       <h3><%= link_to draft.title.html_safe, draft_path(draft) %></h3>
       <p>Author: <%= link_to draft.user.username, user_path(draft.user) %></p>
-      <p>Genre: <%= draft.genre.name %></p>
+      <p>Genre: <%= link_to draft.genre.name, genre_path(draft.genre) %></p>
       <p>Restriction: <%= draft.restriction.html_safe %></p>
       <p>Summary: <%= draft.summary.html_safe %></p>
     <% end %>
