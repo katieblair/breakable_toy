@@ -2,7 +2,7 @@
   <div class="small-12 columns">
     <h1><%= @group.name %></h1>
     <p><%= @group.description %></p>
-    <% if !current_user.is_member?(@group) && current_user.id != @group.user_id %>
+    <% if !current_user.is_member?(@group) %>
       <%= button_to "Join this group", group_memberships_path(@group), method: :post %>
     <% end %>
 
