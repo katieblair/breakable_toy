@@ -11,10 +11,11 @@
 
     <h3>Critiques:</h3>
     <% @critiques.each do |critique| %>
-      <%= critique.comment %>
+      <%= critique.comment %><br/>
+      <%= critique.user.username %><br/>
       <% if current_user == critique.user || current_user.role == 'admin' %>
-        <%= link_to 'Edit', edit_critique_path(critique) %>
-        <%= button_to 'Delete', draft_critique_path(critique.draft, critique), method: :delete, data: {:confirm => "Are you sure?"} %>
+        <%= link_to 'Edit Critique', edit_critique_path(critique) %>
+        <%= button_to 'Delete Critique', draft_critique_path(critique.draft, critique), method: :delete, data: {:confirm => "Are you sure?"} %>
       <% end %>
     <% end %>
 
